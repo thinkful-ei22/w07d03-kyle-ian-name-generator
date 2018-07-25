@@ -1,8 +1,10 @@
 import React from 'react';
+import './NameInput.css';
 
 export default function NameInput(props) {
   return (
     <form className='nameInput' onSubmit={e => props.handleSubmit(e)}>
+    <h2>Funny Name Generator</h2>
       <label htmlFor='firstName'>First Name:</label>
       <input type='text' id='firstName' name='firstName' />
       <label htmlFor='lastName'>Last Name:</label>
