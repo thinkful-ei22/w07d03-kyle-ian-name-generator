@@ -2,6 +2,8 @@ import React from 'react';
 
 import NameInput from './NameInput';
 import Result from './Result';
+const {firstNameGenerator, lastNameGenerator} = require('./generator');
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,11 +25,15 @@ export default class App extends React.Component {
 
   handleClick() {
     console.log('button clicked');
+    const firstBandName = firstNameGenerator(this.state.tempFirstName);
+    const lastBandName = lastNameGenerator(this.state.tempLastName);
     this.setState({
-      firstName: this.state.tempFirstName,
-      lastName: this.state.tempLastName
+      firstName: firstBandName,
+      lastName: lastBandName
     });
   }
+
+
   
 
   render() {
