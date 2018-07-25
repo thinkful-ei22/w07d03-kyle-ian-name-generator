@@ -2,12 +2,16 @@ import React from 'react';
 
 export default function NameInput(props) {
   return (
-    <form className='nameInput' onSubmit={e => e.preventDefault()}>
+    <form className='nameInput' onSubmit={e => props.handleSubmit(e)}>
       <label htmlFor='firstName'>First Name:</label>
-      <input type='text' id='firstName' onChange={ e => props.handleFirstName(e.target.value)} />
+      <input type='text' id='firstName' name='firstName' />
       <label htmlFor='lastName'>Last Name:</label>
-      <input type='text' id='lastName' onChange={ e => props.handleLastName(e.target.value)} />
-      <button type='submit' onClick={() => props.handleClick()}>Generate</button>
+      <input type='text' id='lastName' name='lastName' />
+      <select name='generator'>
+        <option value='metalBand'>Metal Band</option>
+        <option value='leprechaun'>Leprechaun</option>
+      </select>
+      <button type='submit'>Generate</button>
     </form>
   );
 }

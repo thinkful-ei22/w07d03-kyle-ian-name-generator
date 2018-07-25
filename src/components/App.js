@@ -2,8 +2,6 @@ import React from 'react';
 
 import NameInput from './NameInput';
 import Result from './Result';
-const {firstNameGenerator, lastNameGenerator} = require('./generator');
-
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,39 +9,28 @@ export default class App extends React.Component {
 
     this.state = {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      generator: ''
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleFirstName(name) {
-    this.setState({tempFirstName: name});
+  handleSubmit(e) {
+    e.preventDefault();
+    const firstName = e.target.firstName.value.toLowerCase();
+    const lastName = e.target.lastName.value.toLowerCase();
+    const generator = e.target.generator.value;
+    this.setState({firstName, lastName, generator});
   }
-
-  handleLastName(name) {
-    this.setState({tempLastName: name});
-  }
-
-  handleClick() {
-    console.log('button clicked');
-    const firstBandName = firstNameGenerator(this.state.tempFirstName);
-    const lastBandName = lastNameGenerator(this.state.tempLastName);
-    this.setState({
-      firstName: firstBandName,
-      lastName: lastBandName
-    });
-  }
-
-
-  
 
   render() {
     return (
       <div className='app'>
         <NameInput
-          handleFirstName={name => this.handleFirstName(name)}
-          handleLastName={name => this.handleLastName(name)}
-          handleClick={() => this.handleClick()} />
+          handleSubmit= {this.handleSubmit} />
         <Result
+          generator={this.state.generator}
           firstName={this.state.firstName}
           lastName={this.state.lastName} />
       </div>
